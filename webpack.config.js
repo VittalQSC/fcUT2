@@ -1,9 +1,11 @@
 var path = require("path");
+
 module.exports = {
 	entry: {
 		app: ['./node_modules/angular/angular.js', 
 			  './node_modules/angular-mocks/angular-mocks.js', 
 			  './node_modules/angular-route/angular-route.js', 
+			  './public/scripts/Articles/Articles.template.html',
 			  './public/scripts/Articles/Articles.module.js',
 			  './public/scripts/app.js',
 			 ]
@@ -22,7 +24,7 @@ module.exports = {
 	          presets: ['es2015']
 	        }
 	      },
-	      {test: /\.html$/, loader: 'raw'}
+      	  { test: /\.html$/, loader: 'ng-cache-loader?prefix=[dir]/[dir]' },
 	    ]
 	},
 	plugins: [],

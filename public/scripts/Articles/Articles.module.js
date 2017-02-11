@@ -1,9 +1,7 @@
 import angular from 'angular';
-import ArticlesCtrl from './Articles.controller.js';
+import articlesList from './Articles.component.js';
+import article from './Article/Article.module.js';
 angular
-	.module('ArticlesModule', [])
-	.controller('ArticlesCtrl', ArticlesCtrl);
-	// .controller('ArticlesCtrl', function () {console.log("ArticlesModule")});
-
-
-// export default angular;
+	.module('ArticlesModule', ['articleModule'])
+	.controller('ArticlesCtrl', () => {})
+	.component('articlesList', articlesList)

@@ -26,6 +26,7 @@
     "karma": "^1.4.1",
     "karma-chrome-launcher": "^2.0.0",
     "karma-jasmine": "^1.1.0",
+    "ng-cache-loader": "0.0.23",
     "pm2": "^2.4.0",
     "raw-loader": "^0.5.1",
     "webpack": "^2.2.1",
