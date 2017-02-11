@@ -5,10 +5,17 @@
 </head>
 <body>
 <div ng-controller="MainCtrl as ctrl">
-	<h2>Hello {{world}}!2s</h2>
+	<h2>Hello {{world}}!</h2>
 	<h1>{{ctrl.okay}}</h1>
 	<a href="#articles">Articles</a>
 </div>
+
+<div style="margin: 100px"></div>
+
+<article-form></article-form>
+
+<div style="margin: 100px"></div>
+
 <div ng-controller="ArticlesCtrl">
 	<articles-list></articles-list>
 </div>
