@@ -16,4 +16,18 @@ router.get('/', function(req, res, next) {
 
 });
 
+router.post('/', function (req, res) {
+	var body = req.body;
+	console.log(body);
+
+
+	var article = new Article(body);
+
+	article.save(function (err) {
+		if (err) {console.log(err);}
+	});
+
+	// res.send(req.body);
+});
+
 module.exports = router;
