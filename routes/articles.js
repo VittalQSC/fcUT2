@@ -30,4 +30,15 @@ router.post('/', function (req, res) {
 	// res.send(req.body);
 });
 
+router.get('/remove/:id', function(req, res, next) {
+  var id = req.params.id;
+  
+  Article.remove({_id: id}, function (err, article) {
+    if (err) {console.log('ERR');}
+
+    res.redirect('/articles');
+  }); 
+
+});
+
 module.exports = router;
