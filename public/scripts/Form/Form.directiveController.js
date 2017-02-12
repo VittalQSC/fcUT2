@@ -1,40 +1,20 @@
-export default function FormDirectiveController($rootScope, $scope, $http) {
-	console.log("FormController123 ");
-	// console.log("FormController ");
-	$scope.newArticle = {
+export default function FormDirectiveController($rootScope, $scope, $http, ArticlesManagerService) {
+	const emptyArticle = {
 		title: 'ti',
 		text: '',
 		author: '',
 		createDate: ''
 	};
+	// console.log("FormController ");
+	$scope.newArticle = Object.assign({}, emptyArticle);
 
 
-	$scope.reset = function () {
-		$scope.newArticle = {
-			title: '',
-			text: '',
-			author: '',
-			createDate: ''
-		};			
+	$scope.reset = () => {
+		$scope.newArticle = Object.assign({}, emptyArticle);			
 	}
 
-	$scope.create = function (article, isValid) {
-		// if (!isValid) {
-		// 	alert('form isnt valid');
-		// 	return;
-		// }
-		console.log(article);
-		
-		$http.post('/articles/', article)
-			.then(function (s) {console.log(s);}, function (e) {console.log(e);});
-
-		// $http.get('/articles/')
-		// 	.then(function (result) {
-		// 		$scope.articles = result.data;
-		// 	}, function (err) {console.log(err);});	
-
-		$rootScope.$broadcast('updateArticles');	
-
+	$scope.create = (article, isValid) => {
+		ArticlesManagerService.postArticle(article);		
 		$scope.reset();						
 	}
 }

@@ -1,20 +1,18 @@
-function ArticlesComponentController ($scope, $http) {
+function ArticlesComponentController ($scope, $http, ArticlesManagerService) {
 	console.log('ArticlesComponentCtrl');
-	function httpGetArticles() {
-		$http.get('/articles/').then(function (result) {
-			updateArticles(result.data); 		
-		}, function (err) {console.log(err);});			
-	}
-	function updateArticles (articles) {
-		$scope.articles = articles;
-		$scope.articlesNum = articles.length; 				
-	}
 
-	httpGetArticles();
+	ArticlesManagerService.requestArticles().then(result => {
+		$scope.articles = result.data;
+		$scope.articlesNum = result.data.length; 		
+	}, function (err) {console.log(err);});
 
-	$scope.$on('updateArticles', function () {
-		httpGetArticles();				
-	}) 	
+
+	$scope.$watch(() => {
+		return ArticlesManagerService.getArticles();
+	}, (newArticles, oldArticles) => {
+		$scope.articles = newArticles;
+		$scope.articlesNum = newArticles.length; 
+	});
 }	
 
 export default ArticlesComponentController;

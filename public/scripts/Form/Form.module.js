@@ -2,13 +2,17 @@ import angular from 'angular';
 import FormTemplate from './Form.template.html';
 import myValidator from './Validator.js';
 import FormDirectiveController from './Form.directiveController.js' ;
+import ArticlesManager from './../ArticlesManagerService/ArticlesManagerService.js';
 
-angular.module('FormModule', [])
-	.directive('articleForm', function () {
+angular.module('FormModule', ['ArticlesManager'])
+	.directive('articleForm', () => {
 		return {
 				  template: FormTemplate,
 				  replace: true,
-				  controller: ['$rootScope', '$scope', '$http', FormDirectiveController]
+				  controller: [
+				  	'$rootScope', '$scope', '$http', 'ArticlesManagerService', 
+				  	 FormDirectiveController
+				  	]
 			   }
 	})
 	.directive('myValidator', myValidator);

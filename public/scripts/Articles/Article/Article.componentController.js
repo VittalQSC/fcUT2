@@ -1,8 +1,6 @@
-function ArticleComponentController($rootScope, $scope, $http) {
+function ArticleComponentController($rootScope, $scope, $http, ArticlesManagerService) {
 	$scope.remove = function (article) {
-		$http.get('/articles/remove/' + article._id)
-			.then(function () {console.log('suc');}, function () {console.log('err');})
-		$rootScope.$broadcast('updateArticles');
+		ArticlesManagerService.removeArticle(article);
 	};
 }
 
