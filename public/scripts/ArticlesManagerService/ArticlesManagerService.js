@@ -6,10 +6,9 @@ angular.module('ArticlesManager', [])
 		console.log('IM IN SERVICE');
 		let articlesService = [];
 		return { 
-				  requestArticles: (articles) => {
+				  requestArticles: () => {
 					return $http.get('/articles/').then(result => {
 						articlesService = result.data;
-						articles = result.data;
 						return result; 		
 					}, function (err) {console.log(err);});					  	
 				  },
